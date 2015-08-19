@@ -70,6 +70,8 @@
 
         element.replaceWith(facade).appendTo(facade);
 
+        element.data('checkRadiosFacade', facade);
+
         var group = element.is(':radio')
             ? $('input:radio[name=' + element.attr('name') + ']')
             : element;
