@@ -74,20 +74,20 @@
             ? $('input:radio[name=' + element.attr('name') + ']')
             : element;
 
-        facade.on('click mousedown mouseup', function(event) {
+        facade.on('click.checkRadios mousedown.checkRadios mouseup.checkRadios', function(event) {
             event.target = element[0];
             element.trigger(event);
         });
 
-        facade.on('click', function() {
+        facade.on('click.checkRadios', function() {
             element.focus();
         });
 
-        element.on('focus', function() {
+        element.on('focus.checkRadios', function() {
             facade.addClass('focus');
         });
 
-        element.on('blur', function() {
+        element.on('blur.checkRadios', function() {
             facade.removeClass('focus');
         });
 
@@ -95,11 +95,11 @@
 			facade.toggleClass(settings.iconClass, element.prop('checked'));
         });
 
-        element.on('change', function() {
+        element.on('change.checkRadios', function() {
             group.trigger('checkradioSync');
         });
 
-        element.on('click mousedown mouseup', function(event) {
+        element.on('click.checkRadios mousedown.checkRadios mouseup.checkRadios', function(event) {
             // When the facade passes the event to the control, don't
             // allow it to propagate back up to the facade, infinitely
             // recursing. Propogation from the facade will still happen.
