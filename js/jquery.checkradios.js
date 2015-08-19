@@ -51,13 +51,13 @@
         this.each(function () {
 			var element = $(this);
 
-			if (element.is("input[type=checkbox]")) {
-                init(element, settings.checkbox)
-			}
+            var elementSettings = settings[element.prop('type')];
+            if (!elementSettings) return;
 
-			else if (element.is("input[type=radio]")) {
-                init(element, settings.radio)
-			}
+            var priorFacade = element.data('checkRadiosFacade');
+            if (priorFacade) revert(element, priorFacade);
+
+            init(element, elementSettings);
         });
 
         return this;
@@ -93,12 +93,12 @@
             facade.removeClass('focus');
         });
 
-        element.on('checkradioSync', function() {
+        element.on('sync.checkRadios', function() {
 			facade.toggleClass(settings.iconClass, element.prop('checked'));
         });
 
         element.on('change.checkRadios', function() {
-            group.trigger('checkradioSync');
+            group.trigger('sync.checkRadios');
         });
 
         element.on('click.checkRadios mousedown.checkRadios mouseup.checkRadios', function(event) {
@@ -109,4 +109,8 @@
         });
     }
 
+    function revert(element, facade) {
+        facade.replaceWith(element).remove();
+        element.off('.checkRadios');
+    }
 })(jQuery);
