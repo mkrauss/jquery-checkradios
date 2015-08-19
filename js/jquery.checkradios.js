@@ -110,9 +110,3 @@
     }
 
 })(jQuery);
-
-$(document).ready(function () {
-    $('input:checkbox').checkradios();
-    $('input:radio').checkradios();
-});
-
