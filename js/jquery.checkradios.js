@@ -133,6 +133,47 @@
         });
     }
 
+    function initGeneric(element, settings) {
+	    var facade = $('<div/>')
+            .addClass(settings.facadeClass)
+            .addClass(element.attr('class'));
+
+        element.replaceWith(facade).appendTo(facade);
+
+        var group = element.is(':radio')
+            ? $('input:radio[name=' + element.attr('name') + ']')
+            : element;
+
+        facade.on('click mousedown mouseup', function(event) {
+            event.target = element[0];
+            element.trigger(event);
+        });
+
+        facade.on('click', function() {
+            element.focus();
+        });
+
+        element.on('focus', function() {
+            facade.addClass('focus');
+        });
+
+        element.on('blur', function() {
+            facade.removeClass('focus');
+        });
+
+        element.on('checkradioSync', function() {
+			facade.toggleClass(settings.iconClass, element.prop('checked'));
+        });
+
+        element.on('change', function() {
+            group.trigger('checkradioSync');
+        });
+
+        element.on('click mousedown mouseup', function(event) {
+			event.stopPropagation();
+        });
+    }
+
 })(jQuery);
 
 $(document).ready(function () {
