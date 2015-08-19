@@ -100,6 +100,9 @@
         });
 
         element.on('click mousedown mouseup', function(event) {
+            // When the facade passes the event to the control, don't
+            // allow it to propagate back up to the facade, infinitely
+            // recursing. Propogation from the facade will still happen.
 			event.stopPropagation();
         });
     }
