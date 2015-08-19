@@ -52,88 +52,18 @@
 			var element = $(this);
 
 			if (element.is("input[type=checkbox]")) {
-				initCheckbox(element, settings);
+                init(element, settings.checkbox)
 			}
 
 			else if (element.is("input[type=radio]")) {
-				initRadio(element, settings);
+                init(element, settings.radio)
 			}
         });
 
         return this;
     }
 
-    function initCheckbox(checkbox, settings) {
-	    var facade = $('<div/>')
-            .addClass(settings.checkbox.facadeClass)
-            .addClass(checkbox.attr('class'));
-
-        checkbox.replaceWith(facade).appendTo(facade);
-
-        facade.on('click mousedown mouseup', function(event) {
-            event.target = checkbox[0];
-            checkbox.trigger(event);
-        });
-
-        facade.on('click', function() {
-            checkbox.focus();
-        });
-
-        checkbox.on('focus', function() {
-            facade.addClass('focus');
-        });
-
-        checkbox.on('blur', function() {
-            facade.removeClass('focus');
-        });
-
-        checkbox.on('change', function() {
-			facade.toggleClass(settings.checkbox.iconClass, checkbox.prop('checked'));
-        });
-
-        checkbox.on('click mousedown mouseup', function(event) {
-			event.stopPropagation();
-        });
-    }
-
-    function initRadio(radio, settings) {
-	    var facade = $('<div/>')
-            .addClass(settings.radio.facadeClass)
-            .addClass(radio.attr('class'));
-
-        var group = $('input:radio[name=' + radio.attr('name') + ']');
-
-        radio.replaceWith(facade).appendTo(facade);
-
-        facade.on('click mousedown mouseup', function(event) {
-            event.target = radio[0];
-            radio.trigger(event);
-        });
-
-        facade.on('click', function() {
-            radio.focus();
-        });
-
-        radio.on('focus', function() {
-            facade.addClass('focus');
-        });
-
-        radio.on('blur', function() {
-            facade.removeClass('focus');
-        });
-
-        radio.on('change', function() {
-            group.each(function() {
-                $(this).parent().toggleClass(settings.radio.iconClass, this.checked)
-            });
-        });
-
-        radio.on('click mousedown mouseup', function(event) {
-			event.stopPropagation();
-        });
-    }
-
-    function initGeneric(element, settings) {
+    function init(element, settings) {
 	    var facade = $('<div/>')
             .addClass(settings.facadeClass)
             .addClass(element.attr('class'));
