@@ -95,7 +95,7 @@
 
         element.on('sync.checkRadios', function() {
 			facade.toggleClass(settings.iconClass, element.prop('checked'));
-        });
+        }).trigger('sync.checkRadios');
 
         element.on('change.checkRadios', function() {
             group.trigger('sync.checkRadios');
