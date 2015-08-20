@@ -34,19 +34,17 @@
 */
 
 (function ($) {
-    var defaults = {
-        checkbox: {
-            facadeClass: 'checkradios-checkbox',
-            iconClass: 'icon-checkradios-checkmark'
-        },
-        radio: {
-            facadeClass: 'checkradios-radio',
-            iconClass: 'icon-checkradios-circle'
-        }
-    };
-
     $.fn.checkradios = function (options) {
-        var settings = $.extend(defaults, options);
+        var settings = $.extend(true, {
+            checkbox: {
+                facadeClass: 'checkradios-checkbox',
+                iconClass: 'icon-checkradios-checkmark'
+            },
+            radio: {
+                facadeClass: 'checkradios-radio',
+                iconClass: 'icon-checkradios-circle'
+            }
+        }, options);
 
         this.each(function () {
 			var element = $(this);
