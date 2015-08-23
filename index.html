@@ -59,27 +59,14 @@ $(document).ready(function(){
 	
 	
 	
-	$('#callback-checkbox').checkradios({
-	
-	    onChange: function(checked, $element, $realElement){
-		    
-			
-		   if(checked){
-			  
+	$('#callback-checkbox')
+        .checkradios()
+        .on('change', function() {
+		   if(this.checked)
 		       $('.status').html('Checked').css('color', 'green');
-		   
-		   }else{
-		   
+		   else
 		       $('.status').html('Not Checked').css('color', 'red');
-		   
-		   }
-		
-		}
-	
-	
-	});
-	
-	
+		});
 
 
 });
@@ -229,26 +216,14 @@ $('.checkradios').checkradios({
              
             <div class="code-title">Javascript</div>
             <pre class="code">
-$('#callback-checkbox').checkradios({
-	
-    onChange: function(checked){
-    
-    
-        if(checked){
-          
-           $('.status').html('Checked').css('color', 'green');
-        
-        }else{
-        
-           $('.status').html('Not Checked').css('color', 'red');
-        
-        }
-    
-    
-    }
-
-
-});
+	$('#callback-checkbox')
+        .checkradios()
+        .on('change', function() {
+		   if(this.checked)
+		       $('.status').html('Checked').css('color', 'green');
+		   else
+		       $('.status').html('Not Checked').css('color', 'red');
+		});
             </pre>
             
             
