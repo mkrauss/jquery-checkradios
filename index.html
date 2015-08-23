@@ -68,6 +68,9 @@ $(document).ready(function(){
 		       $('.status').html('Not Checked').css('color', 'red');
 		});
 
+    $('#callback-button').on('click', function() {
+        $('#callback-checkbox').prop('checked', true).change();
+    });
 
 });
 
@@ -224,11 +227,18 @@ $('.checkradios').checkradios({
 		   else
 		       $('.status').html('Not Checked').css('color', 'red');
 		});
+
+    $('#callback-button').on('click', function() {
+        $('#callback-checkbox').prop('checked', true).change();
+    });
             </pre>
             
             
             <div class="label">Output:</div>
             <input id="callback-checkbox" type="checkbox" class="custom-style" checked/>
+            <button id="callback-button" type="button">
+                Check it!
+            </button>
             <div class="status">Status will appear here</div>
         </div>
         
